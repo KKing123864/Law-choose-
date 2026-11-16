@@ -15,6 +15,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+        <script>
+      document.addEventListener("error", function (e) {
+        var t = e.target;
+        if (t && t.tagName === "IMG" && t.src.indexOf("assets/portraits/") !== -1) {
+          t.src = t.src.replace("assets/portraits/", "");
+        }
+      }, true);
+    </script>
   </head>
   <body>
     <!-- Hero · 封面 -->
