@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测一测，你的法律人格是哪一种？ · Legal Persona Test</title>
+    <meta
+      name="description"
+      content="12 道争议情境测试题（含电车难题、海因茨困境、程序正义等），用 MBTI/荣格式逻辑算出你的法律人格，共 16 种。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Hero · 封面 -->
+    <header class="hero">
+      <!-- 背景：抽象法院建筑轮廓 / 柱廊 / 天平 / 光束 / 网格 -->
+      <div class="hero__bg" aria-hidden="true">
+        <svg class="hero__svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(201,162,75,0.16)" />
+              <stop offset="1" stop-color="rgba(201,162,75,0)" />
+            </linearGradient>
+            <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="rgba(201,162,75,0)" />
+              <stop offset="0.5" stop-color="rgba(201,162,75,0.55)" />
+              <stop offset="1" stop-color="rgba(201,162,75,0)" />
+            </linearGradient>
+          </defs>
+
+          <!-- 神圣光束 -->
+          <polygon points="300,0 520,0 380,900 60,900" fill="url(#beam)" />
+          <polygon points="920,0 1140,0 1380,900 1060,900" fill="url(#beam)" />
+
+          <!-- 网格分割 -->
+          <g stroke="rgba(201,162,75,0.06)" stroke-width="1">
+            <line x1="0" y1="720" x2="1440" y2="720" />
+            <line x1="0" y1="800" x2="1440" y2="800" />
+            <line x1="120" y1="620" x2="120" y2="900" />
+            <line x1="1320" y1="620" x2="1320" y2="900" />
+          </g>
+
+          <!-- 抽象法院柱廊（左右两组） -->
+          <g fill="rgba(230,201,122,0.10)">
+            <rect x="40"  y="560" width="34" height="340" />
+            <rect x="104" y="560" width="34" height="340" />
+            <rect x="168" y="560" width="34" height="340" />
+            <rect x="20"  y="540" width="200" height="18" />
+            <rect x="1366" y="560" width="34" height="340" />
+            <rect x="1302" y="560" width="34" height="340" />
+            <rect x="1238" y="560" width="34" height="340" />
+            <rect x="1220" y="540" width="200" height="18" />
+          </g>
+
+          <!-- 天平（线稿） -->
+          <g stroke="rgba(201,162,75,0.38)" stroke-width="3" fill="none" stroke-linecap="round">
+            <line x1="720" y1="120" x2="720" y2="330" />
+            <line x1="600" y1="150" x2="840" y2="150" />
+            <circle cx="720" cy="120" r="10" fill="rgba(201,162,75,0.38)" stroke="none" />
+            <path d="M600 150 L560 235 M600 150 L640 235" />
+            <path d="M548 235 Q560 258 572 235 M628 235 Q640 258 652 235" fill="rgba(201,162,75,0.14)" />
+            <path d="M840 150 L800 235 M840 150 L880 235" />
+            <path d="M788 235 Q800 258 812 235 M868 235 Q880 258 892 235" fill="rgba(201,162,75,0.14)" />
+            <line x1="660" y1="345" x2="780" y2="345" />
+          </g>
+
+          <!-- 法典（线稿，底部中央偏右） -->
+          <g stroke="rgba(201,162,75,0.22)" stroke-width="2.5" fill="none" stroke-linejoin="round">
+            <path d="M1060 700 L1060 780 Q1010 762 960 780 L960 700 Q1010 682 1060 700 Z" />
+            <path d="M1060 700 L1060 780 Q1110 762 1160 780 L1160 700 Q1110 682 1060 700 Z" />
+            <line x1="1060" y1="700" x2="1060" y2="780" />
+          </g>
+
+          <!-- 金色分隔线 -->
+          <line x1="120" y1="836" x2="1320" y2="836" stroke="url(#goldLine)" stroke-width="1.5" />
+        </svg>
+      </div>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Jurisprudence · 法律人格自测</p>
+        <h1 class="hero__title">测一测，你的<span class="accent">法律人格</span>是哪一种？</h1>
+        <p class="hero__subtitle">
+          12 道两难情境题，你的每一次选择，都会被算进一套「法理坐标」——最终浮现出最像你的那个法律人格。
+        </p>
+        <button class="hero__cta" id="startBtn" type="button">开 始 测 试</button>
+      </div>
+
+      <!-- 16 种法律人格 · 代表人物画像（不标注人格名称） -->
+      <div class="hero__portraits" aria-hidden="true" id="heroPortraits">
+        <!-- 由 script.js 注入 16 张统一风格画像 -->
+      </div>
+
+      <div class="hero__scroll">向下开始</div>
+    </header>
+
+    <!-- 测试区 -->
+    <main class="container">
+      <section id="quiz" class="quiz" hidden>
+        <div class="quiz__progress">
+          <div class="quiz__progressTrack"><span class="quiz__progressFill" id="progressFill"></span></div>
+          <span class="quiz__progressText" id="progressText">第 1 / 12 题</span>
+        </div>
+        <div class="quiz__card">
+          <h2 class="quiz__q" id="qText"></h2>
+          <div class="quiz__options" id="options"><!-- 由 script.js 渲染 --></div>
+          <div class="quiz__nav">
+            <button class="quiz__prev" id="prevBtn" type="button">← 上一题</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 结果区 -->
+      <section class="result" id="result" hidden>
+        <div class="result__card" id="resultCard"><!-- 由 script.js 渲染 --></div>
+      </section>
+
+      <!-- 全部人格画廊 -->
+      <section class="gallery" id="gallery" hidden>
+        <h2 class="section-title">全部 16 种法律人格</h2>
+        <p class="section-desc">看看你没测到的那些「法律人格」都长什么样——总有一个戳中你身边的人。</p>
+        <div class="g-grid" id="galleryGrid"><!-- 由 script.js 渲染 --></div>
+      </section>
+
+      <footer class="footer">
+        <p>本测试为纯前端互动娱乐，题型参考 MBTI / 荣格自测与法学思想实验，结果仅供趣味与通识，不构成任何法律意见。</p>
+      </footer>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
